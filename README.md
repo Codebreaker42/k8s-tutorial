@@ -280,7 +280,7 @@ Managed Kubernetes services make Kubernetes accessible and scalable by handling 
 1. Create a `Dockerfile` in your project directory.
 2. Build the Docker image:
    ```bash
-   docker build -t kubernetes-test-app:latest .
+   docker build -t k8s-test-app:latest .
    ```
 3. Verify the image:
    ```bash
@@ -288,7 +288,7 @@ Managed Kubernetes services make Kubernetes accessible and scalable by handling 
    ```
 4. Test the image locally:
    ```bash
-   docker run -p 5000:5000 kubernetes-test-app:latest
+   docker run -p 5000:5000 k8s-test-app:latest
    ```
 
 ---
@@ -394,7 +394,7 @@ minikube start --nodes=2 --embed-certs
    ```
 2. Load the Docker image into Minikube:
    ```bash
-   minikube image load kubernetes-test-app:latest
+   minikube image load k8s-test-app:latest
    ```
 
 ---
@@ -408,7 +408,7 @@ kubectl apply -f deployment.yaml
 
 To delete the deployment (if needed):
 ```bash
-kubectl delete deployment kubernetes-test-app
+kubectl delete deployment k8s-test-app
 ```
 
 ---
@@ -428,7 +428,7 @@ kubectl delete deployment kubernetes-test-app
 
 3. Access the application service:
    ```bash
-   minikube service kubernetes-test-app
+   minikube service k8s-test-app
    ```
 
 4. Open the Minikube dashboard:
@@ -476,10 +476,10 @@ If you encounter the `ImagePullBackOff` error:
 
 1. Tag the Docker image with your Docker Hub username:
    ```bash
-   docker tag kubernetes-test-app:latest <your-dockerhub-username>/kubernetes-test-app:latest
+   docker tag k8s-test-app:latest <your-dockerhub-username>/k8s-test-app:latest
    ```
 2. Push the image to Docker Hub:
    ```bash
-   docker push <your-dockerhub-username>/kubernetes-test-app:latest
+   docker push <your-dockerhub-username>/k8s-test-app:latest
    ```
 
