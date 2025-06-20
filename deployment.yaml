@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-test-app
+spec:
+  replicas: 2 #max no of pods
+  selector:
+    matchLabels:
+      app: k8s-test-app
+  template:
+    metadata:
+      labels:
+        app: k8s-test-app
+    spec:
+      containers:
+      - name: k8s-test-app
+        image: k8s-test-app:latest  #its used when we want to push image from local docker image 
+        imagePullPolicy: Never #tell kubernates not to pull from registry
+        # image: nitinbdkt/k8s-test-app #its used when we want to take our image from aws or dockerhub
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
+---
+# service configuration (we can also make seperated)
+apiVersion: v1
+kind: Service 
+metadata:
+  name: k8s-test-app 
+spec: 
+  selector: 
+    app: k8s-test-app 
+  ports:
+  - port: 8080 
+    targetPort: 5000
